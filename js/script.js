@@ -71,7 +71,7 @@ const playMusic = (track, pause = false) => {
 }
 
 async function displayAlbums() {
-    let a = await fetch(`/songs/`)
+    let a = await fetch(`/Spotify-Clone/songs/`)
     let response = await a.text();
     let div = document.createElement("div")
     div.innerHTML = response;
@@ -85,7 +85,7 @@ async function displayAlbums() {
         if (e.href.includes("/songs")) {
             let folder = e.href.split("/").splice(-2)[0]
             // Get the meta data of the folder
-            let a = await fetch(`/songs/${folder}/info.json`)
+            let a = await fetch(`/Spotify-Clone/songs/${folder}/info.json`)
             let response = await a.json();
             cardContainer.innerHTML = cardContainer.innerHTML + `<div data-folder="${folder}" class="card">
             <div class="play">
@@ -96,7 +96,7 @@ async function displayAlbums() {
                 </svg>
             </div>
 
-            <img src="/songs/${folder}/cover.jpeg"
+            <img src="/Spotify-Clone/songs/${folder}/cover.jpeg"
                 alt="">
             <h2>${response.title}</h2>
             <p>${response.description}</p>
@@ -107,7 +107,7 @@ async function displayAlbums() {
     //Load the playlist whenever card is clicked
     Array.from(document.getElementsByClassName("card")).forEach(e => {
         e.addEventListener("click", async item => {
-            songs = await getSongs(`/songs/${item.currentTarget.dataset.folder}`)
+            songs = await getSongs(`/Spotify-Clone/songs/${item.currentTarget.dataset.folder}`)
             playMusic(songs[0])
         })
     })
@@ -115,7 +115,7 @@ async function displayAlbums() {
 
 async function main() {
     //get the list of all the songs
-    await getSongs("songs/first")
+    await getSongs("/Spotify-Clone/songs/first")
     playMusic(songs[0], true)
 
     //Display all the albums on the page
