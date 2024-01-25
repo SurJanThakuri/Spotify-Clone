@@ -107,7 +107,7 @@ async function displayAlbums() {
     //Load the playlist whenever card is clicked
     Array.from(document.getElementsByClassName("card")).forEach(e => {
         e.addEventListener("click", async item => {
-            songs = await getSongs(`https://surjanthakuri.github.io/Spotify-Clonesongs/${item.currentTarget.dataset.folder}`)
+            songs = await getSongs(`https://surjanthakuri.github.io/Spotify-Clone/songs/${item.currentTarget.dataset.folder}`)
             playMusic(songs[0])
         })
     })
